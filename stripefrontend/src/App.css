@@ -1,0 +1,53 @@
+.app {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.courses-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.course-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  text-align: left;
+}
+
+.course-card h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+.course-card p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.price {
+  font-size: 18px;
+  color: green;
+  font-weight: bold;
+}
+
+.buy-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buy-btn:hover {
+  background-color: #0056b3;
+}

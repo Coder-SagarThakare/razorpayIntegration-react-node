@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay ₹500</title>
+</head>
+<body>
+  <button id="payButton">Pay ₹500</button>
+
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+
+    document.getElementById('payButton').addEventListener('click', async () => {
+      try {
+        // Create order via backend
+        const response = await fetch('http://localhost:8000/create-order', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        //   body :{}
+        });
+        const {order} = await response.json();
+        console.log(order)
+
+        // Initialize Razorpay payment
+        const options = {
+          key: 'rzp_test_W7qEVkkqnEMwyx', // Replace with your Razorpay Key ID
+          amount: order.amount,
+          currency: order.currency,
+          name: "Test Transaction",
+          description: "Pay ₹500",
+          order_id: order.id,
+          handler: function (response) {
+            alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+          },
+          prefill: {
+            name: "Your Name",
+            email: "youremail@example.com",
+            contact: "1234567890",
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+      } catch (error) {
+        console.error('Payment failed:', error);
+        alert('Payment failed. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
